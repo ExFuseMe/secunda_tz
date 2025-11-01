@@ -1,0 +1,13 @@
+{
+
+    "success":  false,
+
+    "error":  {
+
+        "code":  "ApiErrorNotFound",
+
+        "message":  "404 not found"
+
+    }
+
+}

@@ -1,0 +1,219 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "Документация REST API проекта",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/companies": {
+            "get": {
+                "tags": [
+                    "Companies"
+                ],
+                "summary": "Проверка доступности API",
+                "description": "Простой тестовый эндпоинт для проверки работы Swagger.",
+                "operationId": "9a3da5092fe0adba1c7c17f1ff892500",
+                "parameters": [
+                    {
+                        "name": "buildingName",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "operationName",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "operationChildren",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "area[point][latitude]",
+                        "in": "query",
+                        "description": "Широта точки центра области поиска (area)",
+                        "required": false,
+                        "schema": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    },
+                    {
+                        "name": "area[point][longitude]",
+                        "in": "query",
+                        "description": "Долгота точки центра области поиска (area)",
+                        "required": false,
+                        "schema": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    },
+                    {
+                        "name": "area[point][radius]",
+                        "in": "query",
+                        "description": "Радиус области поиска (км)",
+                        "required": false,
+                        "schema": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    },
+                    {
+                        "name": "areaBox[point1][latitude]",
+                        "in": "query",
+                        "description": "Широта первой точки прямоугольной области (areaBox)",
+                        "required": false,
+                        "schema": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    },
+                    {
+                        "name": "areaBox[point1][longitude]",
+                        "in": "query",
+                        "description": "Долгота первой точки прямоугольной области (areaBox)",
+                        "required": false,
+                        "schema": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    },
+                    {
+                        "name": "areaBox[point2][latitude]",
+                        "in": "query",
+                        "description": "Широта второй точки прямоугольной области (areaBox)",
+                        "required": false,
+                        "schema": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    },
+                    {
+                        "name": "areaBox[point2][longitude]",
+                        "in": "query",
+                        "description": "Долгота второй точки прямоугольной области (areaBox)",
+                        "required": false,
+                        "schema": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompanyResource"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BuildingResource": {
+                "title": "Building Resource",
+                "description": "Building resource schema",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Main Building"
+                    },
+                    "latitude": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 55.7402
+                    },
+                    "longitude": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 49.1221
+                    }
+                },
+                "type": "object"
+            },
+            "CompanyResource": {
+                "title": "Company Resource",
+                "description": "Company resource schema",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "KFU Company"
+                    },
+                    "operation": {
+                        "$ref": "#/components/schemas/OperationResource"
+                    },
+                    "phones": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "example": "+7 (999) 123-45-67"
+                        }
+                    },
+                    "building": {
+                        "$ref": "#/components/schemas/BuildingResource"
+                    }
+                },
+                "type": "object"
+            },
+            "OperationResource": {
+                "title": "Operatioт Resource",
+                "description": "Operation resource schema",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "tree": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "Authorization": {
+                "type": "apiKey",
+                "description": "Передавать API ключ в заголовке: Authorization: {API_KEY}",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Companies",
+            "description": "Операции с организациями"
+        }
+    ]
+}

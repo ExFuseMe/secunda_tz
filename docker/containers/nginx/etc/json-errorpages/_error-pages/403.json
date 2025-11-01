@@ -1,0 +1,7 @@
+{
+    "success": false,
+    "error": {
+        "code": "ApiErrorForbidden",
+        "message": "Forbidden"
+    }
+}
