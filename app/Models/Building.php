@@ -16,6 +16,11 @@ class Building extends Model
         'longitude',
     ];
 
+    protected $casts = [
+        'latitude' => 'float',
+        'longitude' => 'float',
+    ];
+
     public function companies(): HasMany
     {
         return $this->hasMany(Company::class);
