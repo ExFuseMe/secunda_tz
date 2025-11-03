@@ -12,7 +12,6 @@
                     "Companies"
                 ],
                 "summary": "Проверка доступности API",
-                "description": "Простой тестовый эндпоинт для проверки работы Swagger.",
                 "operationId": "9a3da5092fe0adba1c7c17f1ff892500",
                 "parameters": [
                     {
