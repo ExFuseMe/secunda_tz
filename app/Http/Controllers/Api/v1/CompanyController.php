@@ -18,7 +18,6 @@ class CompanyController extends Controller
      * @OA\Get(
      *     path="/api/v1/companies",
      *     tags={"Companies"},
-     *     summary="Проверка доступности API",
      *     security={{"Authorization":{}}},
      *     @OA\Parameter(
      *          name="buildingName",
@@ -86,11 +85,17 @@ class CompanyController extends Controller
      *          required=false,
      *          @OA\Schema(type="number", format="float")
      *      ),
-     *     @OA\Response(
+     *      @OA\Response(
      *          response=200,
      *          description="Успешный ответ",
-     *          @OA\JsonContent(ref="#/components/schemas/CompanyResource")
-     *      )
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/CompanyResource")
+     *             )
+     *         )
+     *     )
      * )
      */
     public function index(FilterRequest $request)
@@ -101,6 +106,30 @@ class CompanyController extends Controller
 
         return CompanyResource::collection($companies);
     }
+    /**
+     * @OA\Get(
+     *     path="/api/v1/companies/{id}",
+     *     tags={"Companies"},
+     *     security={{"Authorization":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         description="ID компании",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Успешный ответ",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="data",
+     *                 ref="#/components/schemas/CompanyResource"
+     *             )
+     *         )
+     *     )
+     * )
+     */
 
     public function show(Company $company)
     {
