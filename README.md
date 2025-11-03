@@ -24,3 +24,7 @@
     sudo chmod -R 777 docker/logs
     ```
 
+## Для генерации swagger-документации:
+```comandline
+docker-compose exec php-fpm php artisan l5-swagger:generate
+```

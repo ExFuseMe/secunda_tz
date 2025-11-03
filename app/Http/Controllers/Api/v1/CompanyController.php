@@ -19,7 +19,6 @@ class CompanyController extends Controller
      *     path="/api/v1/companies",
      *     tags={"Companies"},
      *     summary="Проверка доступности API",
-     *     description="Простой тестовый эндпоинт для проверки работы Swagger.",
      *     security={{"Authorization":{}}},
      *     @OA\Parameter(
      *          name="buildingName",
